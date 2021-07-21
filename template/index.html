@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <style>
+        #logout {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: red;
+            text-decoration: none;
+            font-size: medium;
+            border: 3px solid red;
+            border-radius: 10px;
+            padding: 10px 30px;
+            transition: 0.5s;
+        }
+        #logout:hover {
+            background-color: red;
+            color: white;
+        }
+        h1 {
+            color: red;
+            opacity: 1;
+            text-decoration: none;
+            font-style: italic;
+            font-weight: bold;
+        }
+        #add {
+            position: absolute;
+            top: 10px;
+            right: 800px;
+            text-align: center;
+            color: red;
+            border: 5px solid red;
+            padding: 10px 30px;
+            border-radius: 10px;
+            transition: 0.5s;
+        }
+        #add:hover {
+            color: white;
+            background-color: red;;
+        }
+        #login {
+            color: red;
+            border: 5px solid red;
+            border-radius: 10px;
+            position: relative;
+            top: 40x;
+            left: 40px;
+            padding: 5px 50px;
+            transition: 0.5s;
+        }
+        #login:hover {
+            color: white;
+            background-color: red;
+        }
+        p {
+            color:red;
+            font-size: 25px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+        #register {
+            color: red;
+            border: 5px solid red;
+            border-radius: 10px;
+            position: relative;
+            left: 30px;
+            padding: 5px 50px;
+            transition: 0.5s;
+        }
+        #register:hover {
+            color: white;
+            background-color: red;
+        }
+        h4 {
+            color: blue;
+        }
+        .notes1 {
+            border: 3px dotted red;
+            border-radius: 10px;
+        }
+        #owl1 {
+            text-transform: uppercase;
+            color: blue;
+        }
+        #owl {
+            color: rgb(145, 255, 0);
+            font-size: 20x;
+        }
+    </style>
+    {% if user.is_authenticated %}
+    <h1>Hi {{user.username}}</h1>
+    <a id="logout" href="logout">Logout</a>
+    <a id="add" href="add">Add note</a>
+    {% for message in messages %}
+    <h4>Note added successfully</h4>
+    {% endfor %}
+    {% for notes in note1 %}
+    <div class="notes1">
+        <h3 id="owl1"><u>{{notes.title}}</u></h3>
+        <p id="owl">{{notes.description}}</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h1>My Notes</h1>
+    <p><strong>Here you can write notes</strong></p>
+    <p>If you already have a account </p>
+    <a id="login" href="login">login</a>
+    <p>else</p>
+    <a id="register" href="register">register</a>
+    {% endif %}
+</head>
+<body>
+    
+</body>
+</html>

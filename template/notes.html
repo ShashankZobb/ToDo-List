@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add notes</title>
+    <style>
+        input[type="text"] {
+            width: 200px;
+        }
+        #hello {
+            height: 270px;
+            width: 700px;
+            font-size: 20px;
+        }
+        input[type=submit]{
+            width: 260px;
+            height: 35px;
+            background: rgba(rgb(0, 102, 255));
+            border: 2px soli red;
+            cursor: pointer;
+            border-radius: 2px;
+            font-family: 'Exo', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: red;
+            padding: 6px;
+            margin-top: 10px;
+        }
+        h1 {
+            color:royalblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>MY NOTE</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" placeholder="Title" name="title" required=""><br><br>
+        <textarea id="hello" placeholder="description" name="descrip" required=""></textarea><br><br>
+        <input type="submit">
+    </form>
+</body>
+</html>
