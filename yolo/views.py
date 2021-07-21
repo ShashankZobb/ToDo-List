@@ -58,3 +58,21 @@ def add_note(request):
         return redirect("/")
     else:
         return render(request, "notes.html")
+
+def delete(request, id):
+    t1 = Notes.objects.get(id=id)
+    t1.delete()
+    return redirect("/")
+
+def edit(request, id):
+    t1 = Notes.objects.get(id=id)
+    if request.method == "POST":
+        title = request.POST['title']
+        desc = request.POST['des']
+        t1.title = title
+        t1.description = desc
+        t1.save()
+        messages.info(request, "Note edited successfully")
+        return redirect("/")
+    else:
+        return render(request, "edit.html", {"id1": t1})

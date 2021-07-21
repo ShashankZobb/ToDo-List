@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit note</title>
+    <style>
+        input[type=submit]{
+            width: 260px;
+            height: 35px;
+            background: rgba(rgb(0, 102, 255));
+            border: 2px soli red;
+            cursor: pointer;
+            border-radius: 2px;
+            font-family: 'Exo', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: red;
+            padding: 6px;
+            margin-top: 10px;
+        }
+        h1 {
+            color:royalblue;
+        }
+        input[type="text"] {
+            width: 200px;
+        }
+        textarea[type="text"] {
+            height: 270px;
+            width: 700px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h1>Edit your {{id1.id}} note</h1>
+        <input type="text" placeholder="title" name="title"><br><br>
+        <textarea type="text" placeholder="Description" name="des"></textarea><br><br>
+        <input type="submit">
+    </form>
+</body>
+</html>

@@ -84,6 +84,7 @@
         .notes1 {
             border: 3px dotted red;
             border-radius: 10px;
+            margin: 5px;
         }
         #owl1 {
             text-transform: uppercase;
@@ -93,16 +94,30 @@
             color: rgb(145, 255, 0);
             font-size: 20x;
         }
+        #delete {
+            position: relative;
+            float: right;
+            margin-right: 20px;
+            color: saddlebrown;
+        }
+        #edit {
+            position: relative;
+            float: right;
+            margin-right: 20px;
+            color: saddlebrown;
+        }
     </style>
     {% if user.is_authenticated %}
     <h1>Hi {{user.username}}</h1>
     <a id="logout" href="logout">Logout</a>
     <a id="add" href="add">Add note</a>
     {% for message in messages %}
-    <h4>Note added successfully</h4>
+    <h4>{{message}}</h4>
     {% endfor %}
     {% for notes in note1 %}
     <div class="notes1">
+        <a id="delete" href="delete/{{notes.id}}">Delete</a>
+        <a id="edit" href="edit/{{notes.id}}">Edit</a>
         <h3 id="owl1"><u>{{notes.title}}</u></h3>
         <p id="owl">{{notes.description}}</p>
     </div>
