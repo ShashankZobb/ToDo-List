@@ -5,7 +5,7 @@ from .models import Notes
 
 # Create your views here.
 def home(request):
-    note1 = Notes.objects.all()
+    note1 = Notes.objects.filter(user=request.user.username)
     return render(request, 'index.html', {'note1':note1})
 
 def register(request):
@@ -19,10 +19,10 @@ def register(request):
             return redirect("/register")
         else:
             if User.objects.filter(username=user).exists():
-                messages.info(request, "Username already exsit")
+                messages.info(request, "Username already exist")
                 return redirect("/register")
             elif User.objects.filter(email=email).exists():
-                messages.info(request, "Email already exsist")
+                messages.info(request, "Email already exist")
                 return redirect("/register")
             else:
                 user = User.objects.create_user(username=user, email=email, password = password)
@@ -52,7 +52,7 @@ def add_note(request):
     if request.method=="POST":
         title = request.POST["title"]
         desc = request.POST["descrip"]
-        note = Notes(title=title, description=desc)
+        note = Notes(user = request.user.username,title=title, description=desc)
         note.save()
         messages.info(request, "Note added succesfully")
         return redirect("/")
@@ -76,3 +76,13 @@ def edit(request, id):
         return redirect("/")
     else:
         return render(request, "edit.html", {"id1": t1})
+def delete_account(request):
+    username = request.user.username
+    auth.logout(request)
+    user = User.objects.get(username=username)
+    notes = Notes.objects.filter(user = username)
+    for i in notes:
+        i.delete()
+    user.delete();
+    messages.info(request, "Account deleted succesfully")
+    return redirect("/login")
