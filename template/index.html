@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes</title>
     <style>
+        .bodyyy{
+            text-align: center;
+        }
+        body {
+            background-image: url("https://cdn.wallpapersafari.com/97/98/2zGSwn.jpg");
+        }
         #logout {
             position: absolute;
             top: 20px;
@@ -19,7 +25,7 @@
             padding: 10px 30px;
             transition: 0.5s;
         }
-        #del_account {
+        .del_account {
             position: absolute;
             top: 20px;
             right: 180px;
@@ -31,7 +37,7 @@
             padding: 10px 30px;
             transition: 0.5s;
         }
-        #del_account:hover {
+        .del_account:hover {
             background-color: red;
             color: white;
         }
@@ -67,7 +73,7 @@
             border-radius: 10px;
             position: relative;
             top: 40x;
-            left: 40px;
+            left: 10px;
             padding: 5px 50px;
             transition: 0.5s;
         }
@@ -86,7 +92,7 @@
             border: 5px solid red;
             border-radius: 10px;
             position: relative;
-            left: 30px;
+            left: 10px;
             padding: 5px 50px;
             transition: 0.5s;
         }
@@ -126,7 +132,7 @@
     {% if user.is_authenticated %}
     <h1>Hi {{user.username}}</h1>
     <a id="logout" href="logout">Logout</a>
-    <a id="del_account" href="delete_account">delete account</a>
+    <a onclick= "checker()" class="del_account" href="delete_account">delete account</a>
     <a id="add" href="add">Add note</a>
     {% for message in messages %}
     <h4>{{message}}</h4>
@@ -140,15 +146,24 @@
     </div>
     {% endfor %}
     {% else %}
-    <h1>My Notes</h1>
-    <p><strong>Here you can write notes</strong></p>
-    <p>If you already have a account </p>
-    <a id="login" href="login">login</a>
-    <p>else</p>
-    <a id="register" href="register">register</a>
+    <div class="bodyyy">
+        <h1>My Notes</h1>
+        <p><strong>Here you can write notes</strong></p>
+        <p>If you already have a account </p>
+        <a id="login" href="login">login</a>
+        <p>else</p>
+        <a id="register" href="register">register</a>
+    </div>
     {% endif %}
 </head>
 <body>
-    
+    <script>
+        function checker() {
+            var result = confirm('Are you sure?');
+            if(result == false){
+                event.preventDefault();
+            }
+        }
+    </script>
 </body>
 </html>
